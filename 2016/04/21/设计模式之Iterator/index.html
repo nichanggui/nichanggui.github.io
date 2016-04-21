@@ -8,21 +8,18 @@
   
   <meta name="keywords" content="">
   <meta name="description" content="title: 设计模式之Iteratordate: 2016-04-21 02:24:22tags: 设计模式 Iterator 
-#设计模式之Iterator
-Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自">
+设计模式之IteratorIteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="No title">
 <meta property="og:url" content="http://changgui.com/2016/04/21/设计模式之Iterator/index.html">
 <meta property="og:site_name" content="Changgui's Blog">
 <meta property="og:description" content="title: 设计模式之Iteratordate: 2016-04-21 02:24:22tags: 设计模式 Iterator 
-#设计模式之Iterator
-Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自">
-<meta property="og:updated_time" content="2016-04-21T09:45:21.964Z">
+设计模式之IteratorIteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义">
+<meta property="og:updated_time" content="2016-04-21T09:49:10.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="No title">
 <meta name="twitter:description" content="title: 设计模式之Iteratordate: 2016-04-21 02:24:22tags: 设计模式 Iterator 
-#设计模式之Iterator
-Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自">
+设计模式之IteratorIteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义">
   
     <link rel="alternative" href="/atom.xml" title="Changgui&#39;s Blog" type="application/atom+xml">
   
@@ -171,7 +168,7 @@ Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator �
 
           
           <nav class="post-toc-wrap" id="post-toc">
-            
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#设计模式之Iterator"><span class="post-toc-text">设计模式之Iterator</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol></li></ol>
           </nav>
           
         </aside>
@@ -180,8 +177,7 @@ Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator �
 
             <div class="post-content" id="post-content" itemprop="postContent"><hr>
 <p>title: 设计模式之Iterator<br>date: 2016-04-21 02:24:22<br>tags: 设计模式 Iterator </p>
-<p>#设计模式之Iterator</p>
-<p>Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义的集合名和J D K中提供的集合名保持一致。</p>
+<h1 id="设计模式之Iterator"><a href="#设计模式之Iterator" class="headerlink" title="设计模式之Iterator"></a>设计模式之Iterator</h1><p><strong>Iteraotr设计模</strong>是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义的集合名和J D K中提供的集合名保持一致。</p>
 <p><strong>接下来写一个简单的Iterator设计模式的例子</strong></p>
 <ul>
 <li><p>1、定义Iterator接口(注意是自定义的，而非jdk自带的)</p>
@@ -202,7 +198,7 @@ Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator �
 <li>5、测试<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="comment">//Collection col=new ArrayList();</span></span><br><span class="line">		Collection col=<span class="keyword">new</span> LinkedList();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">			col.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		Iterator iter=col.iterator();</span><br><span class="line">		<span class="keyword">while</span>(iter.hasNext())&#123;</span><br><span class="line">			System.out.println(iter.next());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>总结<br>通过使用Iterator,使得我们遍历任何集合的代码都一样，从而提高了代码的重用性和简易性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过使用Iterator,使得我们遍历任何集合的代码都一样，从而提高了代码的重用性和简易性。</p>
 </div>
 
             
@@ -226,7 +222,7 @@ Iteraotr设计模是在集合中使 用 的非常多的一种模式, Iterator �
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="设计模式之Iterator" data-title="No title" data-url="http://changgui.com/2016/04/21/设计模式之Iterator/index.html"></div>
+	<div class="ds-thread" data-thread-key="设计模式之Iterator" data-title="" data-url="http://changgui.com/2016/04/21/设计模式之Iterator/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
