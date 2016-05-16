@@ -153,18 +153,13 @@
 <img src="/img/keyevent/KeyEvent_1.jpeg" class="[class names]">
 <p>从上图中我们可以看见，在我们添加260数值下面有一段注释，这个就是添加一个自定义键值在Framework层需要做的修改。<br>其中isSystem(),isWakeKey()并不是必改项，可以根据需要添加，其中修改了isWakeKey()后，每次有改键值上报上来，系统都会自动唤醒屏幕。<br>接下来我们根据这个注释依次修改相应文件，基本上就是我们之前提到的涉及到的文件。</p>
 <pre><code>4.frameworks\native\include\android\keycodes.h
-</code></pre><p>这个文件的修改如下：</p>
-<pre><code>5.frameworks\native\include\input\InputEventLabels.h
-</code></pre><p>这个文件的修改如下：</p>
-<pre><code>6.frameworks\base\core\res\res\values\attrs.xml
-</code></pre><p>Android键值资源声明：<br>到此为止，自定义键值的底层码值定义、上层键值声明都已全部完成，此时我们还不能在上层获取到正确的键值，因为我们还差最重要的一步：Linux码值转换为Android键值。<br>这个转换要如何实现呢？Android中其实是存在一张键值转换表的，根据相同的键值命名，把Linux码值与Framework层的键值一一对应起来。点我了解更多</p>
+</code></pre><p>这个文件的修改如下：<br><img src="/img/keyevent/KeyEvent_2.jpeg" class="[class names]"><br>    5.frameworks\native\include\input\InputEventLabels.h<br>这个文件的修改如下：<br><img src="/img/keyevent/KeyEvent_3.jpeg" class="[class names]"><br>    6.frameworks\base\core\res\res\values\attrs.xml<br>Android键值资源声明：<br><img src="/img/keyevent/KeyEvent_6.jpeg" class="[class names]"><br>到此为止，自定义键值的底层码值定义、上层键值声明都已全部完成，此时我们还不能在上层获取到正确的键值，因为我们还差最重要的一步：Linux码值转换为Android键值。<br>这个转换要如何实现呢？Android中其实是存在一张键值转换表的，根据相同的键值命名，把Linux码值与Framework层的键值一一对应起来。点我了解更多</p>
 <pre><code>7.frameworks\base\data\keyboards\Generic.kl
-</code></pre><p>此文件为本例项目中使用的键值转换表，在表中做如下添加：</p>
+</code></pre><p>此文件为本例项目中使用的键值转换表，在表中做如下添加：<br><img src="/img/keyevent/KeyEvent_4.jpeg" class="[class names]"></p>
 <p>195为我们在Linux下定义的码值，对应我们Framework中声明的“DOUBLE_TAP”键。</p>
 <pre><code>8.frameworks\base\policy\src\com\android\internal\policy\impl\PhoneWindowManager.java
-</code></pre><p>本例中，我们最终获取并使用自定义键值的地方是在PhoneWindowManager的interceptKeyBeforeQueueing()方法中：</p>
-<p>##3、编译及验证</p>
-<p>在第三部分的添加修改完成后， 我们需要对应编译相应的模块并将生成的东西push到手机中验证。<br>对于kernel中的修改，编译bootimage后fastboot boot.img即可<br>对于Framework里面的编译对应模块将其生成的产物放到对应目录下重启即可<br>【注】<br>如果framework里面模块编译后，对应push到手机后无效果，可以试试make snod将重新打包的system.img fastboot到手机。<br>对于Generic.kl文件，看其模块make文件可知，其执行的操作就是将Generic.kl文件拷贝到/system/usr/keylayout目录下，<br>所以我们可以直接将修改好的文件push到手机：adb push Generic.kl /system/usr/keylayout</p>
+</code></pre><p>本例中，我们最终获取并使用自定义键值的地方是在PhoneWindowManager的interceptKeyBeforeQueueing()方法中：<br><img src="/img/keyevent/KeyEvent_5.jpeg" class="[class names]"></p>
+<h2 id="3、编译及验证"><a href="#3、编译及验证" class="headerlink" title="3、编译及验证"></a>3、编译及验证</h2><p>在第三部分的添加修改完成后， 我们需要对应编译相应的模块并将生成的东西push到手机中验证。<br>对于kernel中的修改，编译bootimage后fastboot boot.img即可<br>对于Framework里面的编译对应模块将其生成的产物放到对应目录下重启即可<br>【注】<br>[^demo]:<br>如果framework里面模块编译后，对应push到手机后无效果，可以试试make snod将重新打包的system.img fastboot到手机。<br>对于Generic.kl文件，看其模块make文件可知，其执行的操作就是将Generic.kl文件拷贝到/system/usr/keylayout目录下，<br>所以我们可以直接将修改好的文件push到手机：adb push Generic.kl /system/usr/keylayout</p>
 
         
       </div>
