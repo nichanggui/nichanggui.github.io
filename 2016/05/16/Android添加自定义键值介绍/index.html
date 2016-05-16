@@ -16,7 +16,7 @@
 <meta property="og:description" content="#Android添加自定义键值介绍在Android中，上层可使用的键值默认情况下是92个，从0-91；一般情况下，这些键值是够用的，但是如果想扩充的话，还是需要添加新的键值的，那么如何将一个新的键值从驱动的设置映射到上层，使应用可以对我们自定义的键值进行相应的处理呢？
 接下来我们一步一步进行自定义键值的添加根据功能需求，我们需要自定义一个键值，用来实现特定功能。举例如下：客户需要实现灭屏双击唤醒屏">
 <meta property="og:image" content="http://changgui.com/img/keyevent/KeyEvent_1.jpeg">
-<meta property="og:updated_time" content="2016-05-16T09:50:57.458Z">
+<meta property="og:updated_time" content="2016-05-16T09:52:08.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android添加自定义键值介绍">
 <meta name="twitter:description" content="#Android添加自定义键值介绍在Android中，上层可使用的键值默认情况下是92个，从0-91；一般情况下，这些键值是够用的，但是如果想扩充的话，还是需要添加新的键值的，那么如何将一个新的键值从驱动的设置映射到上层，使应用可以对我们自定义的键值进行相应的处理呢？
@@ -189,7 +189,8 @@
 </code></pre><p>这个文件主要是对上面的码值进行引用，具体细节上如何操作，可询问BSP同事，这里不再描述。<br>上述两个文件修改完成后，编译bootimage，推送到手机即可验证。接下来我们讲讲Framework层涉及到的修改。</p>
 <pre><code>3.framework\base\core\java\android\view\KeyEvent.java
 </code></pre><p>Android的所有键值都是在这个地方有相应的定义的，所以我们也需要添加我们的修改到这个文件。<br>在完成本例时，Android的最后一个键值为“HELP”,数值是259，所以我们在此基础上定义我们的自定义键值的数值大小为260。</p>
-<p><a href="/img/keyevent/KeyEvent_1.jpeg">测试</a><br><img src="/img/keyevent/KeyEvent_1.jpeg" class="[class names]" title="[200] [200] [title text [alt text]]"><br>从上图中我们可以看见，在我们添加260数值下面有一段注释，这个就是添加一个自定义键值在Framework层需要做的修改。<br>其中isSystem(),isWakeKey()并不是必改项，可以根据需要添加，其中修改了isWakeKey()后，每次有改键值上报上来，系统都会自动唤醒屏幕。<br>接下来我们根据这个注释依次修改相应文件，基本上就是我们之前提到的涉及到的文件。</p>
+<img src="/img/keyevent/KeyEvent_1.jpeg" class="[class names]">
+<p>从上图中我们可以看见，在我们添加260数值下面有一段注释，这个就是添加一个自定义键值在Framework层需要做的修改。<br>其中isSystem(),isWakeKey()并不是必改项，可以根据需要添加，其中修改了isWakeKey()后，每次有改键值上报上来，系统都会自动唤醒屏幕。<br>接下来我们根据这个注释依次修改相应文件，基本上就是我们之前提到的涉及到的文件。</p>
 <pre><code>4.frameworks\native\include\android\keycodes.h
 </code></pre><p>这个文件的修改如下：</p>
 <pre><code>5.frameworks\native\include\input\InputEventLabels.h
