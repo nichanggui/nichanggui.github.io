@@ -140,29 +140,7 @@
       </div>
       <div class="post-content" id="post-content" itemprop="postContent" >
         
-          <p>#Android添加自定义键值介绍<br>在Android中，上层可使用的键值默认情况下是92个，从0-91；一般情况下，这些键值是够用的，但是如果想扩充的话，还是需要添加新的键值的，那么如何将一个新的键值从驱动的设置映射到上层，使应用可以对我们自定义的键值进行相应的处理呢？</p>
-<p><strong>接下来我们一步一步进行自定义键值的添加</strong><br>根据功能需求，我们需要自定义一个键值，用来实现特定功能。<br>举例如下：<br>客户需要实现灭屏双击唤醒屏幕功能<br>灭屏时，双击屏幕，BSP驱动同事上传一个自定义的Linux键值<br>经过键值转换，将Linux码键转换为上层KeyEvent中自定义的键值<br>获取到经过转换后的键值，完成唤醒操作<br>上述中简单的介绍了一个自定义键值，从底层驱动触发、上传、转换到被用户使用的一个流程，接下来我们讲讲具体的实现。</p>
-<h2 id="1、涉及到的文件"><a href="#1、涉及到的文件" class="headerlink" title="1、涉及到的文件"></a>1、涉及到的文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">kernel\include\uapi\linux\Input.h ----------------------------------- 底层Linux码值定义</span><br><span class="line">kernel\drivers\input\touchscreen\atmel\Atmel_mxt_ts.c ---- 底层Linux码值上报</span><br><span class="line">framework\base\core\java\android\view\KeyEvent.java ------ framework层Android键值定义</span><br><span class="line">frameworks\base\core\res\res\values\attrs.xml --------------- framework层Android键值资源定义</span><br><span class="line">frameworks\base\data\keyboards\Generic.kl ------------------ Linux码值转换成Android键值转换表</span><br><span class="line">frameworks\<span class="keyword">native</span>\include\android\keycodes.h -------------- Android自定义键值nativ声明</span><br><span class="line">frameworks\<span class="keyword">native</span>\include\input\InputEventLabels.h ------- Android自定义键值nativ声明</span><br><span class="line">frameworks\base\policy\src\com\android\internal\policy\impl\PhoneWindowManager.java -------- 本例中处理自定义键值的地方</span><br></pre></td></tr></table></figure>
-<h2 id="2、实现步骤及细节"><a href="#2、实现步骤及细节" class="headerlink" title="2、实现步骤及细节"></a>2、实现步骤及细节</h2><p>根据上述的文件，我们依次介绍下如何添加。</p>
-<pre><code>kernel\include\uapi\linux\Input.h
-</code></pre><p>这个文件是kernel定义Linux码值的地方，我们这里我们可以看到很多类似“#define KEY_<em>*</em> ###”的定义，我们做如下定义：</p>
-<pre><code>#define KEY_DOUBLE_TAP 195
-</code></pre><p>这个”DOUBLE_TAP”命名要从下至上保持一致，且195这个数字要没有被定义过。</p>
-<pre><code>2.kernel\drivers\input\touchscreen\atmel\Atmel_mxt_ts.c
-</code></pre><p>这个文件主要是对上面的码值进行引用，具体细节上如何操作，可询问BSP同事，这里不再描述。<br>上述两个文件修改完成后，编译bootimage，推送到手机即可验证。接下来我们讲讲Framework层涉及到的修改。</p>
-<pre><code>3.framework\base\core\java\android\view\KeyEvent.java
-</code></pre><p>Android的所有键值都是在这个地方有相应的定义的，所以我们也需要添加我们的修改到这个文件。<br>在完成本例时，Android的最后一个键值为“HELP”,数值是259，所以我们在此基础上定义我们的自定义键值的数值大小为260。</p>
-<img src="/img/keyevent/KeyEvent_1.jpeg" class="[class names]">
-<p>从上图中我们可以看见，在我们添加260数值下面有一段注释，这个就是添加一个自定义键值在Framework层需要做的修改。<br>其中isSystem(),isWakeKey()并不是必改项，可以根据需要添加，其中修改了isWakeKey()后，每次有改键值上报上来，系统都会自动唤醒屏幕。<br>接下来我们根据这个注释依次修改相应文件，基本上就是我们之前提到的涉及到的文件。</p>
-<pre><code>4.frameworks\native\include\android\keycodes.h
-</code></pre><p>这个文件的修改如下：<br><img src="/img/keyevent/KeyEvent_2.jpeg" class="[class names]"><br>    5.frameworks\native\include\input\InputEventLabels.h<br>这个文件的修改如下：<br><img src="/img/keyevent/KeyEvent_3.jpeg" class="[class names]"><br>    6.frameworks\base\core\res\res\values\attrs.xml<br>Android键值资源声明：<br><img src="/img/keyevent/KeyEvent_6.jpeg" class="[class names]"><br>到此为止，自定义键值的底层码值定义、上层键值声明都已全部完成，此时我们还不能在上层获取到正确的键值，因为我们还差最重要的一步：Linux码值转换为Android键值。<br>这个转换要如何实现呢？Android中其实是存在一张键值转换表的，根据相同的键值命名，把Linux码值与Framework层的键值一一对应起来。点我了解更多</p>
-<pre><code>7.frameworks\base\data\keyboards\Generic.kl
-</code></pre><p>此文件为本例项目中使用的键值转换表，在表中做如下添加：<br><img src="/img/keyevent/KeyEvent_4.jpeg" class="[class names]"></p>
-<p>195为我们在Linux下定义的码值，对应我们Framework中声明的“DOUBLE_TAP”键。</p>
-<pre><code>8.frameworks\base\policy\src\com\android\internal\policy\impl\PhoneWindowManager.java
-</code></pre><p>本例中，我们最终获取并使用自定义键值的地方是在PhoneWindowManager的interceptKeyBeforeQueueing()方法中：<br><img src="/img/keyevent/KeyEvent_5.jpeg" class="[class names]"></p>
-<h2 id="3、编译及验证"><a href="#3、编译及验证" class="headerlink" title="3、编译及验证"></a>3、编译及验证</h2><p>在第三部分的添加修改完成后， 我们需要对应编译相应的模块并将生成的东西push到手机中验证。<br>对于kernel中的修改，编译bootimage后fastboot boot.img即可<br>对于Framework里面的编译对应模块将其生成的产物放到对应目录下重启即可<br>【注】<br>[^demo]:<br>如果framework里面模块编译后，对应push到手机后无效果，可以试试make snod将重新打包的system.img fastboot到手机。<br>对于Generic.kl文件，看其模块make文件可知，其执行的操作就是将Generic.kl文件拷贝到/system/usr/keylayout目录下，<br>所以我们可以直接将修改好的文件push到手机：adb push Generic.kl /system/usr/keylayout</p>
-
+          <h1 id="Android添加自定义键值介绍"><a href="#Android添加自定义键值介绍" class="headerlink" title="Android添加自定义键值介绍"></a>Android添加自定义键值介绍</h1><p>在Android中，上层可使用的键值默认情况下是92个，从0-91；一般情况下，这些键值是够用的，但是如果想扩充的话，还是需要添加新的键值的，那么如何将一个新的键值从驱动的设置映射到上层，使应用可以对我们自定义的键值进行相应的处理呢？<br>
         
       </div>
       <div class="post-footer clearfix">
