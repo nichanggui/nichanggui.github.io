@@ -117,6 +117,43 @@
   <ul class="post-list">
   
     <li class="post-list-item">
+  <article id="post-设计模式之Iterator" class="article article-type-post" itemprop="blogPost">
+    
+      
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/05/18/设计模式之Iterator/">设计模式之Iterator</a>
+    </h3>
+  
+
+
+
+      <div class="post-meat flex-row">
+        <div class="flex-col">
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterator/">Iterator</a></li></ul>
+</div>
+        <time datetime="2016-05-18T05:47:11.997Z" itemprop="datePublished" class="post-tiem">
+  2016-05-18
+</time>
+      </div>
+      <div class="post-content" id="post-content" itemprop="postContent" >
+        
+          <p><strong>Iteraotr设计模</strong>是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义的集合名和J D K中提供的集合名保持一致。</p>
+<p><strong>接下来写一个简单的Iterator设计模式的例子</strong><br>
+        
+      </div>
+      <div class="post-footer clearfix">
+        <a href="/2016/05/18/设计模式之Iterator/" class="post-more waves-button-light">MORE</a>
+      </div>
+    
+
+  </article>
+
+</li>
+  
+    <li class="post-list-item">
   <article id="post-Android-xml资源文件的应用方式" class="article article-type-post" itemprop="blogPost">
     
       
@@ -140,73 +177,13 @@
       </div>
       <div class="post-content" id="post-content" itemprop="postContent" >
         
-          <h1 id="Android-xml资源文件中-、-android-type、-、？、-含义和区别"><a href="#Android-xml资源文件中-、-android-type、-、？、-含义和区别" class="headerlink" title="Android xml资源文件中@、@android:type、@*、？、@+含义和区别"></a>Android xml资源文件中@、@android:type、@*、？、@+含义和区别</h1><p>@(Android)[系统资源|@|xml]</p>
-<p><strong>在android</strong>开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用<strong>@drawable</strong>或者<strong>@string</strong>的形式进行资源引用。如果使用系统的资源比如ID,则<strong>@android:id</strong> 如果使用系统的drawable，则使用<strong>@android:drawable</strong>、<strong>?android:att</strong>然而这些具体是什么意思，在什么情况下使用？本文对这几个引用进行简单的介绍。</p>
-<h3 id="代表引用资源"><a href="#代表引用资源" class="headerlink" title="@代表引用资源"></a>@代表引用资源</h3><ul>
-<li><p>引用自定义资源。格式：@[package:]type/name</p>
-<pre><code>android:text=&quot;@string/hello&quot;
-</code></pre></li>
-<li><p>引用系统资源。格式：@android:type/name</p>
-<pre><code>android:textColor=&quot;@android:color/opaque_red&quot;
-</code></pre><p><code>注意：其实@android:type/name是@[package:]type/name 的一个子类</code></p>
-</li>
-</ul>
-<h3 id="代表引用系统的非public资源。格式：-android-type-name"><a href="#代表引用系统的非public资源。格式：-android-type-name" class="headerlink" title="@代表引用系统的非public资源。格式：@android:type/name"></a>@<em>代表引用系统的非public资源。格式：@</em>android:type/name</h3><p>系统资源定义分public和非public。public的声明在：</p>
-<pre><code>&lt;sdk_path&gt;\platforms\android-8\data\res\values\public.xml
-</code></pre><p>  <strong> @*android:type/name</strong>可以调用系统定义的所有资源<br>  <strong> @android:type/name</strong> 只能够调用publi属性的资源。<br>  <code>注意：没在public.xml中声明的资源是google不推荐使用的</code></p>
-<h3 id="代表引用主题属性"><a href="#代表引用主题属性" class="headerlink" title="?代表引用主题属性"></a>?代表引用主题属性</h3><p>另外一种资源值允许你引用当前主题中的属性的值。这个属性值只能在style资源和XML属性中使用；它允许你通过将它们改变为当前主题提供的标准变化来改变UI元素的外观，而不是提供具体的值。例如：</p>
-<pre><code>android:textColor=&quot;?android:textDisabledColor&quot; 
-</code></pre><p><code>注意，这和资源引用非常类似，除了我们使用一个&quot;?&quot;前缀代替了&quot;@&quot;。当你使用这个标记时，你就提供了属性资源的名称，它将会在主题中被查找，所以你不需要显示声明这个类型(如果声明，其形式就是?android:attr/android:textDisabledColor)。除了使用这个资源的标识符来查询主题中的值代替原始的资源，其命名语法和&quot;@&quot;形式一致：?[namespace:]type/name，这里类型可选。</code></p>
-<h3 id="代表在创建或引用资源-。格式：-type-name"><a href="#代表在创建或引用资源-。格式：-type-name" class="headerlink" title="@+代表在创建或引用资源 。格式：@+type/name"></a>@+代表在创建或引用资源 。格式：@+type/name</h3><p>含义：”+”表示在R.java中名为type的内部类中添加一条记录。如”@+id/button”的含义是在R.java 文件中的id 这个静态内部类添加一条常量名为button。该常量就是该资源的标识符。如果标示符（包括系统资源）已经存在则表示引用该标示符。最常用的就是在定义资源ID中，例如：</p>
-<pre><code>@+id/资源ID名         新建一个资源ID
-@id/资源ID名          应用现有已定义的资源ID，包括系统ID
-@android:id/资源ID名   引用系统ID，其等效于@id/资源ID名
-</code></pre>
+          <p>Android xml资源文件中@、@android:type、@*、？、@+含义和区别 </p>
+<p>@ (Android)[系统资源|@|xml]</p>
+<p><strong>在android</strong>开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用<strong>@drawable</strong>或者<strong>@string</strong>的形式进行资源引用。如果使用系统的资源比如ID,则<strong>@android:id</strong> 如果使用系统的drawable，则使用<strong>@android:drawable</strong>、<strong>?android:att</strong>然而这些具体是什么意思，在什么情况下使用？本文对这几个引用进行简单的介绍。<br>
         
       </div>
       <div class="post-footer clearfix">
         <a href="/2016/05/18/Android-xml资源文件的应用方式/" class="post-more waves-button-light">MORE</a>
-      </div>
-    
-
-  </article>
-
-</li>
-  
-    <li class="post-list-item">
-  <article id="post-设计模式之Iterator" class="article article-type-post" itemprop="blogPost">
-    
-      
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/05/17/设计模式之Iterator/">设计模式之Iterator</a>
-    </h3>
-  
-
-
-
-      <div class="post-meat flex-row">
-        <div class="flex-col">
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterator/">Iterator</a></li></ul>
-</div>
-        <time datetime="2016-05-17T01:28:06.864Z" itemprop="datePublished" class="post-tiem">
-  2016-05-17
-</time>
-      </div>
-      <div class="post-content" id="post-content" itemprop="postContent" >
-        
-          <p><strong>Iteraotr设计模</strong>是在集合中使 用 的非常多的一种模式, Iterator 为我们提供了统一的遍历集合的方法,不管该种集合的底层是用数组还是链表实现.现在使用Iterator这种设计模式设计自己的集合类型,为了大家方便理解,现将我自定义的集合名和J D K中提供的集合名保持一致。</p>
-<p><strong>接下来写一个简单的Iterator设计模式的例子</strong></p>
-<ul>
-<li>1、定义Iterator接口(注意是自定义的，而非jdk自带的)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span></span>&#123;</span><br><span class="line">	<span class="comment">//判断是否还有下一个元素</span></span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//取得下一个元素</span></span><br><span class="line">	<span class="function">Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//获得迭代器</span></span><br><span class="line">	<span class="function">Iterator <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-      </div>
-      <div class="post-footer clearfix">
-        <a href="/2016/05/17/设计模式之Iterator/" class="post-more waves-button-light">MORE</a>
       </div>
     
 
@@ -317,13 +294,7 @@
       </div>
       <div class="post-content" id="post-content" itemprop="postContent" >
         
-          <p>#Android 编译CCACHE 设置<br><strong>ccache</strong>（“compiler cache”的缩写）是一个编译器缓存，该工具会高速缓存编译生成的信息，并在编译的特定部分使用高速缓存的信息， 比如头文件，这样就节省了通常使用cpp解析这些信息所需要的时间。如果某头文件中包含对其他头文件的引用，ccache会用那个文件的 cpp-parsed版本来取代include声明。ccache只是将最终的文本拷贝到文件中，使得它可以立即被编译，而不是真正去读取、理解并解释其内容。ccache是以空间换取速度，ccache非常适合经常make clean（或删除out目录）后重新编译的情况。</p>
-<p>我们在编译Android Rom的时候会需要很大内存空间，并且每一次编译都会花费很长时间，<strong>ccache</strong>则是能缓存一些编译生成的信息，可以使我们在下一次编译过程中，如果文件没有改变，则直接冲<strong>ccache</strong>中拷贝到对应目录即可，大大的节约了编译时间。</p>
-<p><strong>接下来我们设置一下编译环境下的CCACHE</strong><br>我的环境是Ubunt12.04。这个环境没关系，设置都是一样的方法。配置如下：</p>
-<ul>
-<li>1、在~/.bashrc中添加(或者/etc/profile文件中)：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export USE_CCACHE=<span class="number">1</span></span><br><span class="line">export CCACHE_DIR=/&lt;path_of_your_choice&gt;/.ccache</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+          <p>#Android 编译CCACHE 设置<br><strong>ccache</strong>（“compiler cache”的缩写）是一个编译器缓存，该工具会高速缓存编译生成的信息，并在编译的特定部分使用高速缓存的信息， 比如头文件，这样就节省了通常使用cpp解析这些信息所需要的时间。如果某头文件中包含对其他头文件的引用，ccache会用那个文件的 cpp-parsed版本来取代include声明。ccache只是将最终的文本拷贝到文件中，使得它可以立即被编译，而不是真正去读取、理解并解释其内容。ccache是以空间换取速度，ccache非常适合经常make clean（或删除out目录）后重新编译的情况。<br>
         
       </div>
       <div class="post-footer clearfix">
