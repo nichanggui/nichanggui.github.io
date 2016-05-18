@@ -8,26 +8,22 @@
   
   <meta name="keywords" content="Android xml drawable">
   <meta name="description" content="Android xml资源文件中@、@android:type、@*、？、@+含义和区别 
-@ (Android)[系统资源|@|xml]
-在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable">
+在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable，则使用@android:drawable、?a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android-xml资源文件的应用方式">
 <meta property="og:url" content="http://changgui.com/2016/05/18/Android-xml资源文件的应用方式/index.html">
 <meta property="og:site_name" content="Changgui's Blog">
 <meta property="og:description" content="Android xml资源文件中@、@android:type、@*、？、@+含义和区别 
-@ (Android)[系统资源|@|xml]
-在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable">
-<meta property="og:updated_time" content="2016-05-18T05:46:05.593Z">
+在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable，则使用@android:drawable、?a">
+<meta property="og:updated_time" content="2016-05-18T05:56:59.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android-xml资源文件的应用方式">
 <meta name="twitter:description" content="Android xml资源文件中@、@android:type、@*、？、@+含义和区别 
-@ (Android)[系统资源|@|xml]
-在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable">
+在android开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用@drawable或者@string的形式进行资源引用。如果使用系统的资源比如ID,则@android:id 如果使用系统的drawable，则使用@android:drawable、?a">
   
     <link rel="alternative" href="/atom.xml" title="Changgui&#39;s Blog" type="application/atom+xml">
   
   <meta name="summary" content="&lt;p&gt;Android xml资源文件中@、@android:type、@*、？、@+含义和区别 &lt;/p&gt;
-&lt;p&gt;@ (Android)[系统资源|@|xml]&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;在android&lt;/strong&gt;开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用&lt;strong&gt;@drawable&lt;/strong&gt;或者&lt;strong&gt;@string&lt;/strong&gt;的形式进行资源引用。如果使用系统的资源比如ID,则&lt;strong&gt;@android:id&lt;/strong&gt; 如果使用系统的drawable，则使用&lt;strong&gt;@android:drawable&lt;/strong&gt;、&lt;strong&gt;?android:att&lt;/strong&gt;然而这些具体是什么意思，在什么情况下使用？本文对这几个引用进行简单的介绍。&lt;br&gt;">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
@@ -183,7 +179,6 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent"><p>Android xml资源文件中@、@android:type、@*、？、@+含义和区别 </p>
-<p>@ (Android)[系统资源|@|xml]</p>
 <p><strong>在android</strong>开发中，我们在使用xml资源的时候一般会定义自己的xml资源，放在drawale目录下，在使用的时候使用<strong>@drawable</strong>或者<strong>@string</strong>的形式进行资源引用。如果使用系统的资源比如ID,则<strong>@android:id</strong> 如果使用系统的drawable，则使用<strong>@android:drawable</strong>、<strong>?android:att</strong>然而这些具体是什么意思，在什么情况下使用？本文对这几个引用进行简单的介绍。<br><a id="more"></a></p>
 <h3 id="代表引用资源"><a href="#代表引用资源" class="headerlink" title="@代表引用资源"></a>@代表引用资源</h3><ul>
 <li><p>引用自定义资源。格式：@[package:]type/name</p>
